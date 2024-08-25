@@ -12,7 +12,7 @@ Bootstrap5(app)
 
 class Segnalazione(FlaskForm):
     tipologia = SelectField('Modulo per la presentazione di:', choices=['Reclamo','Segnalazione','Suggerimento','Apprezzamento'])
-    nome = StringField('Cognome')
+    nome = StringField('Nome')
     cognome = StringField('Cognome')
     indirizzo  = StringField('Indirizzo')
     citta = StringField('Città')

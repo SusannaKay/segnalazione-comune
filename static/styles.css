@@ -1,22 +1,37 @@
 body {
-    background-color: #333;
-    color: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    
 }
 
-a {
-    color: #ffc107;
+.bg-gradient {
+    background: linear-gradient(45deg, #007bff, #6610f2);
 }
 
-.jumbotron {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    height: 100vh;
-    color: white;
-    background-color: #333;
+.card {
+    border: none;
+    border-radius: 10px;
 }
 
-.space-above {
-    margin-top: 20px;
-    padding-top: 20px;
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+}
+
+h1,
+h3 {
+    color: #333;
+}
+
+.lead {
+    color: #ddd;
 }
