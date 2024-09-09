@@ -9,17 +9,17 @@ from PIL import Image
 from datetime import datetime
 
 def compila_pdf(dati):
-    # Stampa di debug
+    # debug print
     print("Dati ricevuti in compila_pdf:", dati)
 
-    # Percorso del template PDF
+    # path to the PDF template
     template_path = os.path.join('pdf_template', 'Modulo reclami Roma.pdf')
     
-    # Crea un PDF temporaneo con i campi compilati
+    # create a temporary PDF with the filled fields
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=A4)
     
-    # Funzione per spezzare il testo in righe
+    # function to split the text into lines
     def wrap_text(text, width, font_name, font_size):
         can = canvas.Canvas(None)
         can.setFont(font_name, font_size)
@@ -36,24 +36,24 @@ def compila_pdf(dati):
         lines.append(' '.join(current_line))
         return lines
 
-    # Prima pagina
-    # Impostazioni per il testo
+    # first page
+    # text settings
     testo = dati['testo'].upper()
     x = 50
     y = 450
-    larghezza_max = 500  # Larghezza massima della riga in punti
-    interlinea = 21  # Spazio tra le righe in punti
+    larghezza_max = 500  
+    interlinea = 21  
 
-    # Spezza il testo in righe e disegnale
+    # split the text into lines
     font_name = "Helvetica"
     font_size = 12
     righe = wrap_text(testo, larghezza_max, font_name, font_size)
     can.setFont(font_name, font_size)
     for riga in righe:
         can.drawString(x, y, riga)
-        y -= interlinea  # Sposta il cursore verso il basso per la prossima riga
+        y -= interlinea  
 
-    # Aggiungi i campi compilati al PDF
+    # add the fields to the pdf
     can.drawString(105, 670, f"{dati['nome']}")
     can.drawString(350, 670, f"{dati['cognome']}")
     can.drawString(105, 645, f"{dati['indirizzo']}")
@@ -66,11 +66,11 @@ def compila_pdf(dati):
     can.drawString(105, 580, f"{dati['cod_fiscale'].upper()}")
     can.drawString(165, 490, f"{dati['luogo']}")
     
-    # Modifica questa riga
+    
     data_formattata = datetime.today().strftime('%d/%m/%Y')
     can.drawString(90, 165, data_formattata)
     
-    # Aggiungi una 'X' nel riquadro corrispondente alla risposta selezionata
+    
     risposta = dati['risposta']
     if risposta == 'e-mail':
         can.drawString(57, 537, 'X')
@@ -93,7 +93,7 @@ def compila_pdf(dati):
     elif tipologia == 'Apprezzamento':
         can.drawString(377, 701, 'X')
 
-    # Aggiungi la firma se presente
+    # Signature
     if dati['signature'] is not None:
         try:
             signature_image = Image.open(io.BytesIO(dati['signature']))
@@ -106,23 +106,21 @@ def compila_pdf(dati):
     else:
         print("Nessuna firma da aggiungere")
 
-    # Seconda pagina (se necessario)
+   
     can.showPage()
-    # Aggiungi qui i campi per la seconda pagina, se ce ne sono
-
-    # Terza pagina (se necessario)
+    
     can.showPage()
-    # Aggiungi qui i campi per la terza pagina, se ce ne sono
+   
 
     can.save()
 
-    # Unisci il template con i dati compilati
+    # Pack the template with the filled data
     packet.seek(0)
     new_pdf = PdfReader(packet)
     existing_pdf = PdfReader(open(template_path, "rb"))
     output = PdfWriter()
 
-    # Unisci tutte le pagine
+    # add the pages to the output
     for i in range(len(existing_pdf.pages)):
         page = existing_pdf.pages[i]
         if i < len(new_pdf.pages):

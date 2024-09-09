@@ -12,10 +12,10 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-    <!-- Il tuo file CSS personalizzato -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     
-    <title>Invia una segnalazione - Roma</title>
+    <title>Invia una segnalazione</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/4.0.0/signature_pad.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <style>
@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <!-- Contenuto del body -->
+    
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -52,10 +52,10 @@
 
     <!-- Hero Section -->
     <div class="container-fluid bg-gradient text-white py-5 text-center">
-        <h1 class="display-4">Invia una segnalazione al Comune di Roma</h1>
-        <p class="lead">Finalmente dal tuo telefono, e senza bisogno di uno scanner.</p>
+        <h1 class="display-4">Invia una segnalazione al Comune</h1>
         
-        <!-- Box informativo -->
+        
+        <!-- Info Box -->
         <div class="container mt-4">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -65,9 +65,8 @@
                             <ul class="text-start">
                                 <li>Compila tutti i campi richiesti nel modulo sottostante</li>
                                 <li>Aggiungi la tua firma utilizzando il pad di firma digitale</li>
-                                <li>Clicca su "Genera PDF" per creare il documento</li>
-                                <li>Usa "Anteprima PDF" per controllare il documento prima dell'invio</li>
-                                <li>Una volta soddisfatto, invia la tua segnalazione</li>
+                                <li>Clicca su "Salva PDF" per creare il documento</li>
+                                <li>Clicca su "Anteprima PDF" per vedere il documento prima di salvarlo</li>
                             </ul>
                         </div>
                     </div>
@@ -76,7 +75,7 @@
         </div>
     </div>
 
-    <!-- Informazioni e Form -->
+   
     <div class="container my-5">
         <h3 class="text-center mb-4">Invia una segnalazione al Comune di Roma</h3>
         <div class="row justify-content-center">
@@ -120,15 +119,12 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <!-- <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Comune di Roma. Tutti i diritti riservati.</p>
-    </footer> -->
+    
 
-    <!-- Bootstrap 5 JavaScript Bundle con Popper -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Il tuo file JavaScript personalizzato -->
+    
     <script src="{{ url_for('static', filename='js/signature.js') }}"></script>
 </body>
 

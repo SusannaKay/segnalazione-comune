@@ -7,7 +7,7 @@ function resizeCanvas() {
     canvas.height = canvas.offsetHeight * ratio;
     canvas.getContext("2d").scale(ratio, ratio);
     if (signaturePad) {
-        signaturePad.clear(); // Pulisce la firma esistente
+        signaturePad.clear(); 
     }
 }
 

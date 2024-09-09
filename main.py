@@ -22,11 +22,11 @@ def preview_pdf():
     try:
         form_data = request.form.to_dict()
         
-        
+        # Get signature data
         signature_data = form_data.get('signature')
         app.logger.info(f"Lunghezza dati firma ricevuti: {len(signature_data) if signature_data else 'Nessun dato'}")
         
-        # Se la firma è presente, convertiamo i dati base64 in bytes
+        # If signature is present, convert base64 data to bytes
         if signature_data and signature_data.startswith('data:image/png;base64,'):
             signature_data = signature_data.split(',')[1]
             form_data['signature'] = base64.b64decode(signature_data)
