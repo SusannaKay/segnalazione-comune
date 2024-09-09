@@ -1,56 +1,99 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --text-color: #2c3e50;
+    --card-bg-color: #ffffff;
+}
+.required::after {
+    content: " *";
+    color: red;
+}
+
 body {
-    font-family: 'Helvetica Neue', sans-serif;
-    
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 .bg-gradient {
-    background: linear-gradient(45deg, #007bff, #6610f2);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 .card {
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg-color);
+    transition: transform 0.3s ease;
 }
 
-footer {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.navbar {
+    background-color: var(--primary-color);
 }
 
 .navbar-brand {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--card-bg-color) !important;
 }
 
 .nav-link {
     font-size: 1.1rem;
+    color: var(--card-bg-color) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
 }
 
 h1,
 h3 {
-    color: #333;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .lead {
-    color: #ddd;
+    color: var(--card-bg-color);
+    font-size: 1.2rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #28a745; /* Colore verde di Bootstrap */
+    border-color: #28a745;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
 }
 
 .signature-container {
     text-align: center;
+    margin-top: 2rem;
 }
 
 .signature-pad {
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
     width: 100%;
     max-width: 500px;
     height: 200px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--card-bg-color);
     position: relative;
-    width: 100%;
-    height: 200px;
 }
 
 .signature-pad canvas {
@@ -60,6 +103,60 @@ h3 {
     width: 100%;
     height: 100%;
     touch-action: none;
-    width: 100%;
-    height: 100%;
 }
+
+#clear-signature {
+    margin-top: 1rem;
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--card-bg-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#clear-signature:hover {
+    background-color: #c0392b;
+}
+
+.contatti-fieldset {
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contatti-legend {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 0 10px;
+}
+
+.contatti-instruction {
+    color: var(--text-color);
+    font-style: italic;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Stile per i campi richiesti */
+.required::after {
+    content: " *";
+    color: red;
+}
+
+/* Stile per i menu a tendina */
+select.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    padding-right: 2.25rem;
+}
+
+/* Aggiungi qui altri stili personalizzati se necessario */
