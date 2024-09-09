@@ -7,7 +7,7 @@ import base64
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'una_chiave_segreta_molto_lunga_e_complessa'
+app.config['SECRET_KEY'] = 'your_secret_key_here'
    
 bootstrap = Bootstrap5(app)
 
