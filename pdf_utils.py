@@ -6,6 +6,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 from PyPDF2 import PdfReader, PdfWriter
 from PIL import Image
+from datetime import datetime
 
 def compila_pdf(dati):
     # Stampa di debug
@@ -61,9 +62,13 @@ def compila_pdf(dati):
     can.drawString(105, 625, f"{dati['telefono']}")
     can.drawString(230, 625, f"{dati['cellulare']}")
     can.drawString(105, 600, f"{dati['email']}")
+    can.drawString(330, 600, f"{dati['pec']}")
     can.drawString(105, 580, f"{dati['cod_fiscale'].upper()}")
     can.drawString(165, 490, f"{dati['luogo']}")
-    can.drawString(90, 165, f"{dati['data']}")
+    
+    # Modifica questa riga
+    data_formattata = datetime.strptime(dati['data'], '%Y-%m-%d').strftime('%d-%m-%Y')
+    can.drawString(90, 165, data_formattata)
     
     # Aggiungi una 'X' nel riquadro corrispondente alla risposta selezionata
     risposta = dati['risposta']

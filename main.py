@@ -4,6 +4,7 @@ from pdf_utils import compila_pdf
 from flask_bootstrap import Bootstrap5
 import io
 import base64
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'una_chiave_segreta_molto_lunga_e_complessa'
@@ -13,13 +14,19 @@ bootstrap = Bootstrap5(app)
 def index():
     form = SegnalazioneForm()
     if form.validate_on_submit():
-        return redirect(url_for('preview_pdf'))
+        data_corretta = form.data.data.strftime('%d-%m-%Y')
+
+        return redirect(url_for('preview_pdf', data=data_corretta))
     return render_template('index.html', form=form)
 
 @app.route('/preview_pdf', methods=['POST'])
 def preview_pdf():
     try:
         form_data = request.form.to_dict()
+        # Usa la data corretta passata dall'URL o dal form
+        data_corretta = request.args.get('data') or form_data.get('data')
+        form_data['data'] = data_corretta
+        
         signature_data = form_data.get('signature')
         app.logger.info(f"Lunghezza dati firma ricevuti: {len(signature_data) if signature_data else 'Nessun dato'}")
         
