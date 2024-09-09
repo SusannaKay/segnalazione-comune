@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, DateField, SelectField
+from wtforms import StringField, TextAreaField, DateField, SelectField, HiddenField
 from wtforms.validators import DataRequired, Email, Length
 from wtforms.widgets import DateInput
+from datetime import date
 
 class SegnalazioneForm(FlaskForm):
     tipologia = SelectField('Tipologia', choices=[
@@ -32,5 +33,3 @@ class SegnalazioneForm(FlaskForm):
     
     luogo = StringField('Luogo', validators=[DataRequired(), Length(max=100)])
     testo = TextAreaField('Testo della segnalazione', validators=[DataRequired()])
-    data = DateField('Data', format='%d-%m-%Y', validators=[DataRequired()], 
-                     render_kw={"type": "date", "pattern": r"\d{2}-\d{2}-\d{4}"})
